@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JSON Objects</title>
+  </head>
+
+  <body>
+    <div class="main"></div>
+    <script>
+      let user = {
+        name: "Your Mom",
+        email: "NaN@gmail.com",
+        age: 99,
+      };
+      console.log(user);
+      document.querySelector(".main").innerHTML = `<h2>${user.email}</h2>`;
+      user.address = "Balapur";
+      document.querySelector(".main").innerHTML = `<h2>${user.address}</h2>`;
+    </script>
+  </body>
+</html>

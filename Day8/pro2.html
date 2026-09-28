@@ -1,0 +1,1200 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta
+			name="description"
+			content="Luxury glassmorphism recipe catalog with live MealDB data, smart filters, and estimated price sorting."
+		/>
+		<title>Meal Luxe | Glassmorphism Recipe Atelier</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			:root {
+				color-scheme: dark;
+				--bg-0: #050816;
+				--bg-1: #091125;
+				--bg-2: #142036;
+				--bg-3: #1f3550;
+				--surface: rgba(255, 255, 255, 0.08);
+				--surface-strong: rgba(255, 255, 255, 0.14);
+				--line: rgba(255, 255, 255, 0.16);
+				--line-strong: rgba(255, 216, 175, 0.34);
+				--text: rgba(255, 250, 247, 0.97);
+				--muted: rgba(232, 223, 217, 0.76);
+				--soft: rgba(255, 255, 255, 0.62);
+				--accent: #f7c58f;
+				--accent-strong: #ffdcb5;
+				--accent-2: #87d6ff;
+				--success: #84e3bb;
+				--shadow: 0 28px 80px rgba(0, 0, 0, 0.38);
+				--radius-xl: 32px;
+				--radius-lg: 24px;
+				--radius-md: 18px;
+				--radius-sm: 14px;
+			}
+
+			* {
+				box-sizing: border-box;
+			}
+
+			html {
+				scroll-behavior: smooth;
+			}
+
+			body {
+				margin: 0;
+				min-height: 100dvh;
+				font-family: "Manrope", sans-serif;
+				color: var(--text);
+				background:
+					radial-gradient(circle at 15% 20%, rgba(247, 197, 143, 0.24), transparent 24%),
+					radial-gradient(circle at 82% 12%, rgba(135, 214, 255, 0.16), transparent 20%),
+					radial-gradient(circle at 78% 78%, rgba(133, 227, 187, 0.1), transparent 24%),
+					linear-gradient(135deg, var(--bg-0), var(--bg-1) 38%, var(--bg-2) 72%, var(--bg-3));
+				overflow-x: hidden;
+			}
+
+			body::before {
+				content: "";
+				position: fixed;
+				inset: 0;
+				pointer-events: none;
+				background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+				background-size: 24px 24px;
+				opacity: 0.12;
+				mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.92), transparent 96%);
+			}
+
+			a {
+				color: inherit;
+			}
+
+			.shell {
+				width: min(1240px, calc(100% - 32px));
+				margin: 0 auto;
+				padding: 28px 0 56px;
+			}
+
+			.hero {
+				position: relative;
+				overflow: hidden;
+				border: 1px solid var(--line);
+				border-radius: 36px;
+				background: linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05));
+				backdrop-filter: blur(20px);
+				-webkit-backdrop-filter: blur(20px);
+				box-shadow: var(--shadow);
+				padding: clamp(22px, 4vw, 44px);
+				margin-bottom: 20px;
+			}
+
+			.hero::before,
+			.hero::after {
+				content: "";
+				position: absolute;
+				border-radius: 50%;
+				pointer-events: none;
+			}
+
+			.hero::before {
+				inset: auto auto -120px -140px;
+				width: 280px;
+				height: 280px;
+				background: radial-gradient(circle, rgba(247, 197, 143, 0.28), transparent 68%);
+				filter: blur(6px);
+			}
+
+			.hero::after {
+				inset: -110px -70px auto auto;
+				width: 220px;
+				height: 220px;
+				background: radial-gradient(circle, rgba(135, 214, 255, 0.2), transparent 68%);
+				filter: blur(4px);
+			}
+
+			.hero-top {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 14px;
+				align-items: center;
+				justify-content: space-between;
+			}
+
+			.brand {
+				display: inline-flex;
+				align-items: center;
+				gap: 12px;
+				padding: 10px 14px;
+				border-radius: 999px;
+				border: 1px solid rgba(255, 255, 255, 0.16);
+				background: rgba(255, 255, 255, 0.06);
+				color: var(--accent-strong);
+				font-size: 0.78rem;
+				font-weight: 800;
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
+			}
+
+			.brand-mark {
+				width: 10px;
+				height: 10px;
+				border-radius: 50%;
+				background: linear-gradient(135deg, var(--accent), var(--accent-2));
+				box-shadow: 0 0 0 6px rgba(247, 197, 143, 0.12);
+			}
+
+			.hero-badges {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 10px;
+			}
+
+			.badge {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				padding: 10px 12px;
+				border: 1px solid rgba(255, 255, 255, 0.14);
+				border-radius: 999px;
+				background: rgba(255, 255, 255, 0.05);
+				color: var(--soft);
+				font-size: 0.88rem;
+			}
+
+			.badge svg {
+				flex: none;
+			}
+
+			h1 {
+				margin: 18px 0 12px;
+				max-width: 12ch;
+				font-family: "Cormorant Garamond", serif;
+				font-size: clamp(2.8rem, 7vw, 6rem);
+				line-height: 0.9;
+				letter-spacing: -0.05em;
+			}
+
+			.lede {
+				margin: 0;
+				max-width: 68ch;
+				color: var(--muted);
+				font-size: clamp(1rem, 1.35vw, 1.12rem);
+				line-height: 1.7;
+			}
+
+			.hero-grid {
+				display: grid;
+				grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.85fr);
+				gap: 16px;
+				align-items: end;
+				margin-top: 26px;
+			}
+
+			.intro-panel,
+			.signal-panel,
+			.control-panel,
+			.glass-card,
+			.empty-state {
+				border: 1px solid var(--line);
+				background: var(--surface);
+				backdrop-filter: blur(18px);
+				-webkit-backdrop-filter: blur(18px);
+				box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+			}
+
+			.intro-panel {
+				border-radius: var(--radius-xl);
+				padding: 18px;
+			}
+
+			.intro-panel p {
+				margin: 0;
+				color: var(--muted);
+				line-height: 1.65;
+			}
+
+			.signal-panel {
+				display: grid;
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: 12px;
+				border-radius: var(--radius-xl);
+				padding: 18px;
+			}
+
+			.signal {
+				padding: 14px;
+				border-radius: 20px;
+				background: rgba(255, 255, 255, 0.05);
+				border: 1px solid rgba(255, 255, 255, 0.08);
+			}
+
+			.signal strong {
+				display: block;
+				font-size: 1.18rem;
+				font-weight: 800;
+			}
+
+			.signal span {
+				display: block;
+				margin-top: 6px;
+				color: var(--muted);
+				font-size: 0.88rem;
+				line-height: 1.45;
+			}
+
+			.controls {
+				display: grid;
+				gap: 14px;
+				margin: 18px 0 18px;
+			}
+
+			.control-panel {
+				border-radius: 28px;
+				padding: 16px;
+			}
+
+			.control-row {
+				display: grid;
+				grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.8fr) minmax(180px, 0.45fr) minmax(190px, 0.45fr);
+				gap: 12px;
+			}
+
+			.field {
+				display: grid;
+				gap: 8px;
+			}
+
+			.field label {
+				color: var(--soft);
+				font-size: 0.84rem;
+				font-weight: 700;
+				letter-spacing: 0.04em;
+				text-transform: uppercase;
+			}
+
+			.input,
+			.select,
+			.button {
+				min-height: 48px;
+				border-radius: 16px;
+				border: 1px solid rgba(255, 255, 255, 0.14);
+				background: rgba(255, 255, 255, 0.05);
+				color: var(--text);
+				font: inherit;
+			}
+
+			.input,
+			.select {
+				width: 100%;
+				padding: 0 14px;
+				outline: none;
+				transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
+			}
+
+			.input::placeholder {
+				color: rgba(255, 255, 255, 0.44);
+			}
+
+			.input:focus,
+			.select:focus,
+			.button:focus-visible,
+			.pill:focus-visible,
+			.card-link:focus-visible {
+				border-color: rgba(247, 197, 143, 0.7);
+				box-shadow: 0 0 0 3px rgba(247, 197, 143, 0.16);
+				outline: none;
+			}
+
+			.sort-group {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 10px;
+			}
+
+			.button,
+			.pill,
+			.card-link {
+				cursor: pointer;
+				touch-action: manipulation;
+			}
+
+			.button {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				gap: 10px;
+				padding: 0 16px;
+				font-weight: 700;
+				letter-spacing: 0.01em;
+				transition: transform 180ms ease, background 180ms ease, border-color 180ms ease, opacity 180ms ease;
+			}
+
+			.button:hover,
+			.pill:hover,
+			.card-link:hover {
+				transform: translateY(-1px);
+			}
+
+			.button.primary {
+				border-color: rgba(247, 197, 143, 0.55);
+				background: linear-gradient(135deg, rgba(247, 197, 143, 0.24), rgba(135, 214, 255, 0.14));
+			}
+
+			.button.ghost {
+				background: rgba(255, 255, 255, 0.04);
+			}
+
+			.button[disabled] {
+				opacity: 0.5;
+				cursor: not-allowed;
+				transform: none;
+			}
+
+			.toolbar {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 10px;
+				align-items: center;
+				justify-content: space-between;
+				margin: 16px 0 18px;
+			}
+
+			.view-meta {
+				color: var(--muted);
+				font-size: 0.95rem;
+			}
+
+			.chips {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 10px;
+			}
+
+			.pill {
+				min-height: 44px;
+				padding: 10px 14px;
+				border-radius: 999px;
+				border: 1px solid rgba(255, 255, 255, 0.14);
+				background: rgba(255, 255, 255, 0.05);
+				color: var(--text);
+				font: inherit;
+				transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+			}
+
+			.pill.active {
+				border-color: var(--line-strong);
+				background: linear-gradient(135deg, rgba(247, 197, 143, 0.18), rgba(255, 255, 255, 0.08));
+			}
+
+			.status-row {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 12px;
+				align-items: center;
+				justify-content: space-between;
+				margin-bottom: 16px;
+			}
+
+			.status {
+				margin: 0;
+				color: var(--muted);
+				font-size: 0.95rem;
+			}
+
+			.status strong {
+				color: var(--text);
+			}
+
+			.grid {
+				display: grid;
+				grid-template-columns: repeat(12, minmax(0, 1fr));
+				gap: 18px;
+			}
+
+			.card {
+				grid-column: span 4;
+				display: flex;
+				flex-direction: column;
+				overflow: hidden;
+				border-radius: 28px;
+				border: 1px solid rgba(255, 255, 255, 0.14);
+				background: linear-gradient(180deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.05));
+				backdrop-filter: blur(16px);
+				-webkit-backdrop-filter: blur(16px);
+				box-shadow: var(--shadow);
+				transform: translateY(18px);
+				opacity: 0;
+				animation: rise 700ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+			}
+
+			.card:hover .meal-image {
+				transform: scale(1.04);
+			}
+
+			.card-media {
+				position: relative;
+				display: grid;
+				place-items: center;
+				min-height: 260px;
+				padding: 24px;
+				background:
+					radial-gradient(circle at top, rgba(255, 255, 255, 0.12), transparent 62%),
+					linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent);
+			}
+
+			.meal-image {
+				width: 100%;
+				max-width: 240px;
+				aspect-ratio: 1;
+				object-fit: cover;
+				border-radius: 50%;
+				border: 1px solid rgba(255, 255, 255, 0.18);
+				box-shadow: 0 18px 36px rgba(0, 0, 0, 0.25);
+				transition: transform 220ms ease;
+			}
+
+			.meal-image--fallback {
+				display: grid;
+				place-items: center;
+				width: 100%;
+				max-width: 240px;
+				aspect-ratio: 1;
+				border-radius: 50%;
+				border: 1px solid rgba(255, 255, 255, 0.18);
+				background: linear-gradient(135deg, rgba(247, 197, 143, 0.22), rgba(135, 214, 255, 0.18));
+				color: var(--text);
+				font-family: "Cormorant Garamond", serif;
+				font-size: clamp(2rem, 6vw, 3.2rem);
+				letter-spacing: -0.03em;
+				text-align: center;
+				padding: 24px;
+			}
+
+			.card-body {
+				display: grid;
+				gap: 14px;
+				padding: 0 22px 22px;
+			}
+
+			.card-top {
+				display: flex;
+				gap: 12px;
+				align-items: flex-start;
+				justify-content: space-between;
+			}
+
+			.card h2 {
+				margin: 0;
+				font-family: "Cormorant Garamond", serif;
+				font-size: 1.8rem;
+				line-height: 1;
+				letter-spacing: -0.03em;
+			}
+
+			.tag {
+				display: inline-flex;
+				width: fit-content;
+				align-items: center;
+				gap: 8px;
+				padding: 8px 12px;
+				border-radius: 999px;
+				background: rgba(255, 255, 255, 0.06);
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				color: var(--accent-strong);
+				font-size: 0.82rem;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+			}
+
+			.price-row {
+				display: flex;
+				gap: 10px;
+				flex-wrap: wrap;
+				align-items: center;
+				justify-content: space-between;
+			}
+
+			.price {
+				margin: 0;
+				font-size: 1.5rem;
+				font-weight: 800;
+				color: var(--accent-strong);
+			}
+
+			.specs {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 8px;
+			}
+
+			.spec {
+				display: inline-flex;
+				align-items: center;
+				gap: 6px;
+				padding: 8px 10px;
+				border-radius: 999px;
+				background: rgba(255, 255, 255, 0.05);
+				color: var(--soft);
+				font-size: 0.85rem;
+			}
+
+			.summary {
+				margin: 0;
+				color: var(--muted);
+				line-height: 1.7;
+				font-size: 0.97rem;
+			}
+
+			.card-actions {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 10px;
+			}
+
+			.card-link {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				min-height: 44px;
+				padding: 0 14px;
+				border-radius: 14px;
+				border: 1px solid rgba(255, 255, 255, 0.14);
+				background: rgba(255, 255, 255, 0.05);
+				text-decoration: none;
+				font-weight: 700;
+			}
+
+			.empty-state {
+				grid-column: 1 / -1;
+				border-radius: 28px;
+				padding: 32px;
+				text-align: center;
+				color: var(--muted);
+			}
+
+			.empty-state h2 {
+				margin: 0 0 10px;
+				font-family: "Cormorant Garamond", serif;
+				font-size: clamp(1.9rem, 4vw, 2.8rem);
+				color: var(--text);
+			}
+
+			.empty-state p {
+				margin: 0 auto;
+				max-width: 56ch;
+				line-height: 1.65;
+			}
+
+			.loading {
+				display: grid;
+				grid-template-columns: repeat(12, minmax(0, 1fr));
+				gap: 18px;
+			}
+
+			.skeleton {
+				grid-column: span 4;
+				min-height: 540px;
+				border-radius: 28px;
+				border: 1px solid rgba(255, 255, 255, 0.12);
+				background: linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.11) 50%, rgba(255, 255, 255, 0.05) 100%);
+				background-size: 220% 100%;
+				animation: shimmer 1.3s ease-in-out infinite;
+			}
+
+			.footer-note {
+				margin-top: 18px;
+				color: var(--muted);
+				font-size: 0.92rem;
+				line-height: 1.6;
+			}
+
+			.sr-only {
+				position: absolute;
+				width: 1px;
+				height: 1px;
+				padding: 0;
+				margin: -1px;
+				overflow: hidden;
+				clip: rect(0, 0, 0, 0);
+				white-space: nowrap;
+				border: 0;
+			}
+
+			@keyframes rise {
+				to {
+					transform: translateY(0);
+					opacity: 1;
+				}
+			}
+
+			@keyframes shimmer {
+				0% {
+					background-position: 100% 0;
+				}
+
+				100% {
+					background-position: 0 0;
+				}
+			}
+
+			@media (max-width: 1080px) {
+				.hero-grid,
+				.control-row {
+					grid-template-columns: 1fr;
+				}
+
+				.signal-panel {
+					grid-template-columns: repeat(3, minmax(0, 1fr));
+				}
+
+				.card,
+				.skeleton {
+					grid-column: span 6;
+				}
+			}
+
+			@media (max-width: 720px) {
+				.shell {
+					width: min(100% - 18px, 1240px);
+					padding-top: 14px;
+				}
+
+				.hero {
+					border-radius: 28px;
+				}
+
+				h1 {
+					max-width: none;
+					font-size: clamp(2.35rem, 15vw, 4rem);
+				}
+
+				.signal-panel {
+					grid-template-columns: 1fr;
+				}
+
+				.sort-group {
+					grid-template-columns: 1fr;
+				}
+
+				.card,
+				.skeleton {
+					grid-column: 1 / -1;
+				}
+
+				.card-media {
+					min-height: 240px;
+				}
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				html {
+					scroll-behavior: auto;
+				}
+
+				*,
+				*::before,
+				*::after {
+					animation-duration: 0.01ms !important;
+					animation-iteration-count: 1 !important;
+					transition-duration: 0.01ms !important;
+					scroll-behavior: auto !important;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main class="shell">
+			<section class="hero" aria-labelledby="page-title">
+				<div class="hero-top">
+					<div class="brand"><span class="brand-mark" aria-hidden="true"></span> Meal Luxe Atelier</div>
+					<div class="hero-badges" aria-label="Platform highlights">
+						<div class="badge">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+								<path d="M4 12h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+								<path d="M12 4v16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+							</svg>
+							Live recipe catalog
+						</div>
+						<div class="badge">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+								<path d="M6 12.5 10 16.5 18 8.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+							</svg>
+							Estimated price sorting
+						</div>
+						<div class="badge">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+								<path d="M4 8h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+								<path d="M7 8v12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+								<path d="M17 8v12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+							</svg>
+							Designed for everyone
+						</div>
+					</div>
+				</div>
+
+				<h1 id="page-title">Luxury meal discovery with a warm, glassy glow.</h1>
+				<p class="lede">
+					Explore live meals from TheMealDB inside a premium glassmorphism storefront.
+					Search by name, filter by cuisine or category, sort by estimated price, and find
+					fast, affordable ideas for students or richer inspiration for home cooks building
+					a fuller table.
+				</p>
+
+				<div class="hero-grid">
+					<div class="intro-panel">
+						<p>
+							MealDB does not expose a real price field, so this interface calculates an
+							estimated meal price from the recipe’s ingredients, category, and complexity.
+							That keeps the page honest while still giving users a practical way to sort
+							by budget.
+						</p>
+					</div>
+					<div class="signal-panel" aria-label="Quick facts">
+						<div class="signal">
+							<strong id="mealCountHero">0</strong>
+							<span>meals loaded from the API</span>
+						</div>
+						<div class="signal">
+							<strong id="categoryCountHero">0</strong>
+							<span>categories surfaced for browsing</span>
+						</div>
+						<div class="signal">
+							<strong id="areaCountHero">0</strong>
+							<span>world cuisines represented</span>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="controls" aria-label="Browse controls">
+				<div class="control-panel">
+					<div class="control-row">
+						<div class="field">
+							<label for="searchInput">Search meals</label>
+							<input id="searchInput" class="input" type="search" placeholder="Search by dish, ingredient, country, or mood" />
+						</div>
+
+						<div class="field">
+							<label for="areaFilter">Cuisine</label>
+							<select id="areaFilter" class="select"></select>
+						</div>
+
+						<div class="field">
+							<label for="categoryFilter">Category</label>
+							<select id="categoryFilter" class="select"></select>
+						</div>
+
+						<div class="field">
+							<label>Sort</label>
+							<div class="sort-group">
+								<button class="button primary" id="sortPriceBtn" type="button" aria-pressed="true">
+									Price: low to high
+								</button>
+								<button class="button ghost" id="resetBtn" type="button">Reset</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="toolbar">
+					<div class="chips" id="quickChips" aria-label="Quick filters"></div>
+					<div class="view-meta" id="viewMeta">Loading the luxury pantry…</div>
+				</div>
+			</section>
+
+			<section aria-label="Meal results">
+				<div class="status-row">
+					<p class="status" id="statusText">Loading meals from TheMealDB…</p>
+					<p class="status"><strong id="visibleCount">0</strong> curated results visible</p>
+				</div>
+
+				<div class="loading" id="loadingGrid" aria-hidden="true">
+					<div class="skeleton"></div>
+					<div class="skeleton"></div>
+					<div class="skeleton"></div>
+				</div>
+
+				<div class="grid" id="resultsGrid" aria-live="polite"></div>
+				<p class="footer-note">
+					Tip: sorting uses an estimated price model. The cards also reveal meal category,
+					cuisine, ingredient count, and a direct source link for deeper learning.
+				</p>
+			</section>
+		</main>
+
+		<script>
+			const apiBase = "https://www.themealdb.com/api/json/v1/1";
+
+			const elements = {
+				searchInput: document.querySelector("#searchInput"),
+				areaFilter: document.querySelector("#areaFilter"),
+				categoryFilter: document.querySelector("#categoryFilter"),
+				quickChips: document.querySelector("#quickChips"),
+				resultsGrid: document.querySelector("#resultsGrid"),
+				loadingGrid: document.querySelector("#loadingGrid"),
+				statusText: document.querySelector("#statusText"),
+				viewMeta: document.querySelector("#viewMeta"),
+				visibleCount: document.querySelector("#visibleCount"),
+				mealCountHero: document.querySelector("#mealCountHero"),
+				categoryCountHero: document.querySelector("#categoryCountHero"),
+				areaCountHero: document.querySelector("#areaCountHero"),
+				sortPriceBtn: document.querySelector("#sortPriceBtn"),
+				resetBtn: document.querySelector("#resetBtn"),
+			};
+
+			const state = {
+				meals: [],
+				categories: [],
+				areas: [],
+				activeCategory: "All",
+				activeArea: "All",
+				activeQuick: "All",
+				sortDirection: "asc",
+				search: "",
+				loading: true,
+			};
+
+			const numberFormatter = new Intl.NumberFormat("en-US", {
+				style: "currency",
+				currency: "USD",
+				maximumFractionDigits: 0,
+			});
+
+			const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+			const normalize = (value) => String(value ?? "").toLowerCase().trim();
+
+			const getIngredientNames = (meal) => {
+				const items = [];
+
+				for (let index = 1; index <= 20; index += 1) {
+					const ingredient = meal[`strIngredient${index}`];
+					const measure = meal[`strMeasure${index}`];
+
+					if (ingredient && ingredient.trim()) {
+						items.push({ ingredient: ingredient.trim(), measure: measure?.trim() || "" });
+					}
+				}
+
+				return items;
+			};
+
+			const getMealTokens = (meal) => {
+				const ingredients = getIngredientNames(meal).map((item) => item.ingredient);
+				return [
+					meal.strMeal,
+					meal.strCategory,
+					meal.strArea,
+					meal.strInstructions,
+					...ingredients,
+				]
+					.filter(Boolean)
+					.map(normalize)
+					.join(" ");
+			};
+
+			const estimatePrice = (meal) => {
+				const ingredients = getIngredientNames(meal);
+				const ingredientScore = ingredients.length * 1.9;
+				const instructionScore = (meal.strInstructions?.length || 0) / 260;
+				const categoryScore = /dessert|bake|cake|pastry/i.test(meal.strCategory || "") ? 6 : 3;
+				const areaScore = /british|french|american|italian/i.test(meal.strArea || "") ? 4 : 2.2;
+				const idScore = (Number(meal.idMeal) || 0) % 10;
+				const base = 8 + ingredientScore + instructionScore + categoryScore + areaScore + idScore;
+				return Math.round(clamp(base, 8, 58));
+			};
+
+			const prepTimeLabel = (meal) => {
+				const ingredients = getIngredientNames(meal).length;
+				const baseMinutes = 12 + ingredients * 4 + Math.round((meal.strInstructions?.length || 0) / 120);
+
+				if (baseMinutes <= 25) return `${baseMinutes} min`;
+				if (baseMinutes <= 40) return `${baseMinutes} min`;
+				return `${baseMinutes} min`;
+			};
+
+			const renderOptions = (select, values, label) => {
+				select.innerHTML = [
+					`<option value="All">All ${label}</option>`,
+					...values.map((value) => `<option value="${value}">${value}</option>`),
+				].join("");
+			};
+
+			const renderQuickChips = () => {
+				const chips = [
+					"All",
+					...state.categories.slice(0, 6),
+					...state.areas.slice(0, 4),
+				];
+
+				const deduped = [...new Set(chips)].filter(Boolean);
+
+				elements.quickChips.innerHTML = deduped
+					.map(
+						(chip) => `
+							<button class="pill ${chip === state.activeQuick ? "active" : ""}" type="button" data-chip="${chip}">
+								${chip}
+							</button>
+						`,
+					)
+					.join("");
+
+				elements.quickChips.querySelectorAll(".pill").forEach((button) => {
+					button.addEventListener("click", () => {
+						const chip = button.dataset.chip;
+						state.activeQuick = chip;
+
+						if (state.categories.includes(chip) || chip === "All") {
+							state.activeCategory = chip;
+							elements.categoryFilter.value = chip;
+						}
+
+						if (state.areas.includes(chip) || chip === "All") {
+							state.activeArea = chip;
+							elements.areaFilter.value = chip;
+						}
+
+						state.search = chip === "All" ? state.search : state.search;
+						syncActiveChipStyles();
+						renderMeals();
+					});
+				});
+			};
+
+			const syncActiveChipStyles = () => {
+				elements.quickChips.querySelectorAll(".pill").forEach((button) => {
+					button.classList.toggle("active", button.dataset.chip === state.activeQuick);
+				});
+			};
+
+			const updateCounters = () => {
+				elements.mealCountHero.textContent = String(state.meals.length);
+				elements.categoryCountHero.textContent = String(state.categories.length);
+				elements.areaCountHero.textContent = String(state.areas.length);
+			};
+
+			const buildMealCard = (meal, index) => {
+				const ingredients = getIngredientNames(meal);
+				const ingredientPreview = ingredients.slice(0, 4).map((item) => item.ingredient).join(" · ");
+				const price = estimatePrice(meal);
+				const area = meal.strArea || "Global";
+				const category = meal.strCategory || "Signature";
+				const instructions = (meal.strInstructions || "").replace(/\s+/g, " ").trim();
+				const summary = instructions.length > 160 ? `${instructions.slice(0, 160)}…` : instructions;
+				const imageAlt = `${meal.strMeal} plated dish`;
+				const imageMarkup = meal.strMealThumb
+					? `<img class="meal-image" src="${meal.strMealThumb}" alt="${imageAlt}" loading="lazy" />`
+					: `<div class="meal-image--fallback" aria-hidden="true">${meal.strMeal
+							.split(" ")
+							.slice(0, 3)
+							.map((part) => part[0] || "")
+							.join("")}</div>`;
+
+				return `
+					<article class="card" style="animation-delay: ${Math.min(index * 48, 320)}ms">
+						<div class="card-media">
+							${imageMarkup}
+						</div>
+						<div class="card-body">
+							<div class="card-top">
+								<div>
+									<span class="tag">${category}</span>
+									<h2>${meal.strMeal}</h2>
+								</div>
+							</div>
+
+							<div class="price-row">
+								<p class="price">${numberFormatter.format(price)}</p>
+								<span class="spec">${area}</span>
+							</div>
+
+							<div class="specs" aria-label="Meal details">
+								<span class="spec">${ingredients.length} ingredients</span>
+								<span class="spec">${prepTimeLabel(meal)}</span>
+								${ingredientPreview ? `<span class="spec">${ingredientPreview}</span>` : ""}
+							</div>
+
+							<p class="summary">${summary || "No instructions available for this meal."}</p>
+
+							<div class="card-actions">
+								<a class="card-link" href="${meal.strSource || meal.strYoutube || `https://www.themealdb.com/meal.php?c=${meal.idMeal}`}" target="_blank" rel="noreferrer">View recipe</a>
+								${meal.strYoutube ? `<a class="card-link" href="${meal.strYoutube}" target="_blank" rel="noreferrer">Watch video</a>` : ""}
+							</div>
+						</div>
+					</article>
+				`;
+			};
+
+			const renderMeals = () => {
+				const query = normalize(state.search);
+
+				const filtered = state.meals.filter((meal) => {
+					const tokens = getMealTokens(meal);
+					const matchesSearch = !query || tokens.includes(query) || normalize(meal.strMeal).includes(query);
+					const matchesCategory = state.activeCategory === "All" || meal.strCategory === state.activeCategory;
+					const matchesArea = state.activeArea === "All" || meal.strArea === state.activeArea;
+					const matchesQuick =
+						state.activeQuick === "All" ||
+						meal.strCategory === state.activeQuick ||
+						meal.strArea === state.activeQuick;
+
+					return matchesSearch && matchesCategory && matchesArea && matchesQuick;
+				});
+
+				const sorted = [...filtered].sort((left, right) => {
+					const leftPrice = estimatePrice(left);
+					const rightPrice = estimatePrice(right);
+					return state.sortDirection === "asc" ? leftPrice - rightPrice : rightPrice - leftPrice;
+				});
+
+				elements.visibleCount.textContent = String(sorted.length);
+				updateStatus(sorted.length);
+
+				if (!sorted.length) {
+					elements.resultsGrid.innerHTML = `
+						<div class="empty-state">
+							<h2>No meals match your current filters</h2>
+							<p>
+								Try a broader search, clear the current cuisine, or switch to another
+								category. The catalog contains a wide range of quick student meals and
+								more elaborate dishes for everyday home cooking.
+							</p>
+						</div>
+					`;
+					return;
+				}
+
+				elements.resultsGrid.innerHTML = sorted.map((meal, index) => buildMealCard(meal, index)).join("");
+			};
+
+			const updateStatus = (count) => {
+				const fragments = [];
+
+				if (state.search) fragments.push(`searching for "${state.search}"`);
+				if (state.activeCategory !== "All") fragments.push(`category: ${state.activeCategory}`);
+				if (state.activeArea !== "All") fragments.push(`cuisine: ${state.activeArea}`);
+				if (state.activeQuick !== "All") fragments.push(`quick chip: ${state.activeQuick}`);
+
+				const filterText = fragments.length ? fragments.join(" • ") : "showing the full pantry";
+				const sortText = state.sortDirection === "asc" ? "price low to high" : "price high to low";
+
+				elements.statusText.innerHTML = `<strong>${count}</strong> meals visible, sorted by ${sortText}, ${filterText}.`;
+				elements.viewMeta.textContent = `${count} curated results currently visible`;
+			};
+
+			const resetFilters = () => {
+				state.activeCategory = "All";
+				state.activeArea = "All";
+				state.activeQuick = "All";
+				state.search = "";
+				state.sortDirection = "asc";
+				elements.searchInput.value = "";
+				elements.categoryFilter.value = "All";
+				elements.areaFilter.value = "All";
+				elements.sortPriceBtn.textContent = "Price: low to high";
+				elements.sortPriceBtn.setAttribute("aria-pressed", "true");
+				syncActiveChipStyles();
+				renderMeals();
+			};
+
+			const fetchJSON = async (url) => {
+				const response = await fetch(url);
+				if (!response.ok) {
+					throw new Error(`Request failed with status ${response.status}`);
+				}
+				return response.json();
+			};
+
+			const fetchLetterMeals = async (letter) => {
+				const data = await fetchJSON(`${apiBase}/search.php?f=${letter}`);
+				return data.meals || [];
+			};
+
+			const loadMeals = async () => {
+				const letters = "abcdefghijklmnopqrstuvwxyz".split("");
+				const categoryData = await fetchJSON(`${apiBase}/categories.php`);
+				const areaData = await fetchJSON(`${apiBase}/list.php?a=list`);
+
+				const batches = await Promise.allSettled(letters.map((letter) => fetchLetterMeals(letter)));
+				const collected = batches.flatMap((result) => (result.status === "fulfilled" ? result.value : []));
+
+				const seen = new Set();
+				const meals = [];
+
+				for (const meal of collected) {
+					if (!meal?.idMeal || seen.has(meal.idMeal)) continue;
+					seen.add(meal.idMeal);
+					meals.push(meal);
+				}
+
+				state.meals = meals;
+				state.categories = (categoryData.categories || []).map((item) => item.strCategory).filter(Boolean);
+				state.areas = (areaData.meals || []).map((item) => item.strArea).filter(Boolean);
+
+				renderOptions(elements.categoryFilter, state.categories, "categories");
+				renderOptions(elements.areaFilter, state.areas, "cuisines");
+				renderQuickChips();
+				updateCounters();
+				renderMeals();
+
+				elements.loadingGrid.style.display = "none";
+				elements.resultsGrid.style.marginTop = "0";
+				elements.statusText.textContent = "Meals loaded successfully from TheMealDB.";
+			};
+
+			const showError = (error) => {
+				elements.loadingGrid.style.display = "none";
+				elements.resultsGrid.innerHTML = `
+					<div class="empty-state">
+						<h2>Unable to load the meal catalog</h2>
+						<p>
+							${error.message}. Check your connection and try again. The page is built to
+							recover cleanly once the API is available.
+						</p>
+					</div>
+				`;
+				elements.statusText.textContent = `Load failed: ${error.message}`;
+				elements.viewMeta.textContent = "Data unavailable";
+			};
+
+			elements.searchInput.addEventListener("input", (event) => {
+				state.search = event.target.value;
+				state.activeQuick = "All";
+				syncActiveChipStyles();
+				renderMeals();
+			});
+
+			elements.categoryFilter.addEventListener("change", (event) => {
+				state.activeCategory = event.target.value;
+				state.activeQuick = event.target.value === "All" ? state.activeQuick : event.target.value;
+				syncActiveChipStyles();
+				renderMeals();
+			});
+
+			elements.areaFilter.addEventListener("change", (event) => {
+				state.activeArea = event.target.value;
+				state.activeQuick = event.target.value === "All" ? state.activeQuick : event.target.value;
+				syncActiveChipStyles();
+				renderMeals();
+			});
+
+			elements.sortPriceBtn.addEventListener("click", () => {
+				state.sortDirection = state.sortDirection === "asc" ? "desc" : "asc";
+				elements.sortPriceBtn.textContent = state.sortDirection === "asc" ? "Price: low to high" : "Price: high to low";
+				elements.sortPriceBtn.setAttribute("aria-pressed", state.sortDirection === "asc" ? "true" : "false");
+				renderMeals();
+			});
+
+			elements.resetBtn.addEventListener("click", resetFilters);
+
+			elements.loadingGrid.style.display = "grid";
+			loadMeals().catch(showError);
+		</script>
+	</body>
+</html>

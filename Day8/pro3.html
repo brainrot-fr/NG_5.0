@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="main"></div>
+    <script>
+
+        const findAreaOfSquare = (side) => {
+            let AreaOfSquare = side*side;
+            document.querySelector(".main").innerHTML += ` Area of Square: ${AreaOfSquare}<br>`;
+        }
+        const findAreaOfRect = (length, breadth) => {
+            let AreaOfRect= length*breadth;
+            document.querySelector(".main").innerHTML += ` Area of Rectangle: ${AreaOfRect}<br>`;
+
+        }
+        const findPerimeterOfSquare = (side) => {
+            let PerimeterOfSquare = 4*side;
+            document.querySelector(".main").innerHTML += ` Perimeter of Square: ${PerimeterOfSquare}<br>`;
+
+        }
+        const findPerimeterOfRect = (length, breadth) => {
+            let PerimeterOfRect = 2*(length+breadth);
+            document.querySelector(".main").innerHTML += ` Perimeter of Rectangle: ${PerimeterOfRect}<br>`;
+
+        }
+        findAreaOfRect(2, 6)
+        findAreaOfSquare(4)
+        findPerimeterOfRect(3,8)
+        findPerimeterOfSquare(5)
+    </script>
+</body>
+</html>

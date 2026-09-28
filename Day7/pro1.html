@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Program 1</title>
+  </head>
+  <body>
+    <h1>Conditional Statements</h1>
+    <div class="main"></div>
+    <script>
+      // let  a = -9;
+      // if (a >= 0){
+      //     console.log("this is a positive number");
+      //     document.querySelector(".main").innerHTML = "This is a positive number";
+      //     alert("this is a positive number");
+      // }
+      // else if (a < 0){
+      //     console.log("this is a negative number");
+      //     document.querySelector(".main").innerHTML = "This is a negative number";
+      //     alert("this is a negative number");
+      // }
+
+      // let random = Math.random();
+      // if (random >= 0){
+      //     document.querySelector(".main").innerHTML = "Random number is " + random + " and it is positive"
+      // }
+      // else if (random < 0){
+      //     document.querySelector(".main").innerHTML = "Random number is " + random + " and it is negative"
+      // }
+        let a = 10, b=20, opr="+";
+      switch (opr) {
+        case "+":
+          document.querySelector(".main").innerHTML = "Addition is " + Number(a + b);
+          break;
+        case "-":
+          document.querySelector(".main").innerHTML = "Subtraction is" + Number(a - b);
+          break;
+        case "*":
+          document.querySelector(".main").innerHTML =
+            "Multiplication is" + Number(a * b);
+          break;
+        case "/":
+          document.querySelector(".main").innerHTML = "Division is " + Number(a / b);
+          break;
+        default:
+          document.querySelector(".main").innerHTML = "Enter a valid operand";
+      }
+    </script>
+  </body>
+</html>

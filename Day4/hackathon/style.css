@@ -1,0 +1,194 @@
+:root {
+  --bg: #FAFAF9;
+  --text-large: #16181C;
+  --text-small: #3B3E42;
+  --muted: #6B6F76;
+
+  --surface-0: #FAFAF9;
+  --surface-1: #FFFFFF;
+  --surface-2: #F3F3F1;
+  --surface-3: #ECECE9;
+
+  --primary: #185FA5;
+  --primary-2: #378ADD;
+  --primary-soft: #E6F1FB;
+  --on-primary: #FFFFFF;
+
+  --hairline: rgba(20, 20, 20, 0.10);
+  --ring: rgba(24, 95, 165, 0.30);
+
+  --shadow-sm: 0 1px 2px rgba(20, 20, 20, 0.04);
+  --shadow-md: 0 2px 6px rgba(20, 20, 20, 0.06);
+  --shadow-lg: 0 6px 16px rgba(20, 20, 20, 0.08);
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  --space-1: 4px; --space-2: 8px; --space-3: 12px;
+  --space-4: 16px; --space-5: 24px; --space-6: 32px;
+
+  --danger: #CF222E;
+  --success: #1A7F37;
+
+  --panel: var(--surface-1);
+  --panel-2: var(--surface-2);
+  --border: var(--hairline);
+  --shadow: rgba(20, 20, 20, 0.08);
+}
+body {
+    background-color: var(--bg);
+}
+h2 {
+    margin-left: 2rem;
+}
+footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: var(--primary-soft);
+    padding: 0.5rem;
+    border-radius: var(--radius-md);
+    border: 2px solid var(--ring);
+    margin-top: 2rem;
+    margin-left: 6rem;
+    margin-right: 6rem;
+}
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 2rem;
+    margin:auto;
+    height: 5vh;
+}
+.logo {
+    width: 5%;
+}
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: var(--primary);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+}
+.nav-button {
+    background-color: var(--primary-soft);
+    color: var(--text-large);
+    border: 2px solid var(--ring);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 0.8em;
+}
+.primary-button {
+    background-color: var(--primary);
+    color: var(--on-primary);
+    border: none;
+    padding: 0.5rem 1rem ;
+    margin-bottom:1rem;
+    margin-top: auto;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: var(--shadow-sm);
+}
+.date {
+    background-color: var(--primary-soft);
+    color: var(--text-large);
+    border: 2px solid var(--ring);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+}
+.event-hero {
+    margin-top: 8rem;
+    padding-left:2rem;
+    text-shadow: 0 5px 5px rgba(20, 20, 20, 0.04);
+    display: block;
+    margin-right: auto;
+}
+.event-cards {
+    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+.event-individual-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.25rem;
+  background-color: var(--surface-3);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+.event-image {
+    width: 100%;
+    border-radius: var(--radius-md);
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow-lg);
+    max-width: 20rem;;
+}
+.event-desc {
+    text-align: left;
+    max-width: 600px;
+    margin-bottom: 1rem;
+    padding-left: 10px;
+    flex-grow: 1;
+}
+.speakers-container {
+    display:flex;
+    gap:2rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+.individual-speaker-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--surface-3);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    width: 100%;
+    margin: auto;
+    padding: auto;
+    max-width: 20rem;
+    max-height: 20rem;
+}
+.speaker-image{
+    width:100%;
+    max-width: 10rem;
+}
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    gap: 1rem;
+}
+.gal-img {
+    width: 20rem;
+    display:flex;
+    margin-left:auto;
+    margin-right:auto;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+}
+.registration-container {
+    display: block;
+    margin-left: 4rem;
+    margin-right: 4rem;
+    margin-top: 2rem;
+    background-color: var(--surface-3);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+}
+.reg-closed {
+    background-color: var(--danger);
+    color: var(--on-primary);
+    margin-right:auto;
+    margin-left:auto;
+    padding: 0.5rem 1rem;
+}

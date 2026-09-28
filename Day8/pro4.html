@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let arr1 = [10, 10, 20];
+      let arr2 = [11, 11, 21];
+      let obj1 = { key: "value", secondKey: "value2", thirdKey: "value3" };
+      let obj2 = {
+        key1: "value1",
+        key2: "value2",
+        key3: "value3",
+      };
+      const copiedArr = [...arr1];
+      console.log(copiedArr);
+
+      const mergedArr = [...arr1, ...arr2];
+      console.log(mergedArr);
+
+      const mergedObj = { ...obj1, ...obj2 };
+      console.log(mergedObj);
+    </script>
+  </body>
+</html>
