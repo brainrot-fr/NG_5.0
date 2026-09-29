@@ -1,11 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="theme-color" content="#f5f7f2">
+    <title>Results | TKREC</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/results.css}">
 </head>
 <body>
-    <h1>results</h1>
+    <header class="site-header">
+        <a class="brand" th:href="@{/home}" aria-label="TKREC student portal home">
+            <span class="brand-mark" aria-hidden="true">T</span>
+            <span class="brand-copy"><strong>TKREC</strong><span>Student portal</span></span>
+        </a>
+        <nav class="site-nav" aria-label="Main navigation">
+            <a th:href="@{/home}">Overview</a>
+            <a th:href="@{/admission}">Admissions</a>
+            <a th:href="@{/courses}">Courses</a>
+            <a th:href="@{/results}" aria-current="page">Results</a>
+        </nav>
+    </header>
+
+    <main class="page-shell interior-page results-page">
+        <a class="back-link" th:href="@{/home}"><span aria-hidden="true">&lt;-</span> All services</a>
+        <section class="page-heading" aria-labelledby="page-title">
+            <p class="eyebrow">STUDENT SERVICES / ACADEMIC RECORDS</p>
+            <h1 id="page-title">Results</h1>
+            <p class="lead">Updates and access information for academic results.</p>
+        </section>
+
+        <section class="results-panel" aria-labelledby="results-title">
+            <div class="results-panel-heading"><div><p class="eyebrow">RESULTS PORTAL</p><h2 id="results-title">Academic results</h2></div><span class="results-status"><span class="status-dot" aria-hidden="true"></span> NOT CONNECTED</span></div>
+            <div class="results-empty">
+                <span class="results-symbol" aria-hidden="true">R</span>
+                <div><h3>Results are not available here yet.</h3><p>This page is not connected to an academic records service. For current results or access support, please contact TKREC directly.</p></div>
+            </div>
+            <div class="results-footer"><span>For your privacy, do not enter personal or student information on this page.</span><a class="text-link" th:href="@{/home}">Back to overview <span aria-hidden="true">-&gt;</span></a></div>
+        </section>
+        <footer class="page-footer"><span>TKREC Student Portal</span><a th:href="@{/courses}">Browse courses <span aria-hidden="true">-&gt;</span></a></footer>
+    </main>
 </body>
 </html>

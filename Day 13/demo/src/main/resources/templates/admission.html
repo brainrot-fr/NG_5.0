@@ -1,11 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="theme-color" content="#f5f7f2">
+    <title>Admissions | TKREC</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/admission.css}">
 </head>
 <body>
-    
+    <header class="site-header">
+        <a class="brand" th:href="@{/home}" aria-label="TKREC student portal home">
+            <span class="brand-mark" aria-hidden="true">T</span>
+            <span class="brand-copy"><strong>TKREC</strong><span>Student portal</span></span>
+        </a>
+        <nav class="site-nav" aria-label="Main navigation">
+            <a th:href="@{/home}">Overview</a>
+            <a th:href="@{/admission}" aria-current="page">Admissions</a>
+            <a th:href="@{/courses}">Courses</a>
+            <a th:href="@{/results}">Results</a>
+        </nav>
+    </header>
+
+    <main class="page-shell interior-page admission-page">
+        <a class="back-link" th:href="@{/home}"><span aria-hidden="true">&lt;-</span> All services</a>
+        <section class="page-heading" aria-labelledby="page-title">
+            <p class="eyebrow">STUDENT SERVICES / ADMISSIONS</p>
+            <h1 id="page-title">Admissions</h1>
+            <p class="lead">A clear place to begin your application journey and find the information to prepare.</p>
+        </section>
+
+        <div class="admission-layout">
+            <section class="journey-panel" aria-labelledby="journey-title">
+                <div class="panel-heading">
+                    <p class="eyebrow">YOUR NEXT STEPS</p>
+                    <h2 id="journey-title">Start with the essentials.</h2>
+                </div>
+                <ol class="journey-list">
+                    <li><span class="step-number">01</span><div><h3>Explore courses</h3><p>Review the course information available and identify an area of interest.</p><a class="text-link" th:href="@{/courses}">View courses <span aria-hidden="true">-&gt;</span></a></div></li>
+                    <li><span class="step-number">02</span><div><h3>Check the requirements</h3><p>Entry criteria and required documents can vary by programme.</p></div></li>
+                    <li><span class="step-number">03</span><div><h3>Confirm current details</h3><p>Verify deadlines and application instructions with the admissions office before applying.</p></div></li>
+                </ol>
+            </section>
+            <aside class="note-panel" aria-labelledby="note-title">
+                <span class="note-mark" aria-hidden="true">i</span>
+                <p class="eyebrow">GOOD TO KNOW</p>
+                <h2 id="note-title">Details can change.</h2>
+                <p>Programme availability, entry requirements, and dates are subject to change. Please confirm the latest information with TKREC before making an application.</p>
+                <a class="button button-dark" th:href="@{/courses}">Explore courses <span aria-hidden="true">-&gt;</span></a>
+            </aside>
+        </div>
+        <footer class="page-footer"><span>TKREC Student Portal</span><a th:href="@{/results}">Go to results <span aria-hidden="true">-&gt;</span></a></footer>
+    </main>
 </body>
 </html>

@@ -1,11 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="theme-color" content="#f5f7f2">
+    <title>Courses | TKREC</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/courses.css}">
 </head>
 <body>
-    
+    <header class="site-header">
+        <a class="brand" th:href="@{/home}" aria-label="TKREC student portal home">
+            <span class="brand-mark" aria-hidden="true">T</span>
+            <span class="brand-copy"><strong>TKREC</strong><span>Student portal</span></span>
+        </a>
+        <nav class="site-nav" aria-label="Main navigation">
+            <a th:href="@{/home}">Overview</a>
+            <a th:href="@{/admission}">Admissions</a>
+            <a th:href="@{/courses}" aria-current="page">Courses</a>
+            <a th:href="@{/results}">Results</a>
+        </nav>
+    </header>
+
+    <main class="page-shell interior-page courses-page">
+        <a class="back-link" th:href="@{/home}"><span aria-hidden="true">&lt;-</span> All services</a>
+        <section class="page-heading" aria-labelledby="page-title">
+            <p class="eyebrow">STUDENT SERVICES / ACADEMICS</p>
+            <h1 id="page-title">Courses</h1>
+            <p class="lead">Find your way through programme information, course details, and academic guidance.</p>
+        </section>
+
+        <section class="catalogue-panel" aria-labelledby="catalogue-title">
+            <div class="catalogue-topline"><span class="catalogue-label">COURSE DIRECTORY</span><span class="catalogue-rule" aria-hidden="true"></span><span class="catalogue-state">INFORMATION</span></div>
+            <div class="catalogue-empty">
+                <span class="catalogue-icon" aria-hidden="true">C</span>
+                <div>
+                    <p class="eyebrow">PROGRAMME INFORMATION</p>
+                    <h2 id="catalogue-title">The directory is being prepared.</h2>
+                    <p>Course listings and availability are not published on this page yet. Check with TKREC for the current catalogue and programme details.</p>
+                    <a class="button button-dark" th:href="@{/admission}">Admissions guidance <span aria-hidden="true">-&gt;</span></a>
+                </div>
+            </div>
+        </section>
+
+        <section class="course-guidance" aria-labelledby="guidance-title">
+            <div><p class="eyebrow">NEED A HAND?</p><h2 id="guidance-title">Not sure where to start?</h2></div>
+            <p>Review the admissions steps or return to the student services overview.</p>
+            <a class="text-link" th:href="@{/admission}">View admissions <span aria-hidden="true">-&gt;</span></a>
+        </section>
+        <footer class="page-footer"><span>TKREC Student Portal</span><a th:href="@{/results}">Go to results <span aria-hidden="true">-&gt;</span></a></footer>
+    </main>
 </body>
 </html>

@@ -1,14 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#f5f7f2">
+    <title>Student Portal | TKREC</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
-    <h1>Welcome to Spring Boot</h1>
-    <p class="para">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste, ipsam. Quod, ipsum voluptatem deleniti officiis vero consequatur natus autem tenetur ex sunt porro saepe error officia iure quibusdam fugit recusandae!</p>
-    <img src="../../../../../../../../syed-jalal/Downloads/test.jpg" alt="">
+    <header class="site-header">
+        <a class="brand" th:href="@{/home}" aria-label="TKREC student portal home">
+            <span class="brand-mark" aria-hidden="true">T</span>
+            <span class="brand-copy"><strong>TKREC</strong><span>Student portal</span></span>
+        </a>
+        <nav class="site-nav" aria-label="Main navigation">
+            <a th:href="@{/home}" aria-current="page">Overview</a>
+            <a th:href="@{/admission}">Admissions</a>
+            <a th:href="@{/courses}">Courses</a>
+            <a th:href="@{/results}">Results</a>
+        </nav>
+    </header>
+
+    <main class="page-shell home-page">
+        <section class="home-intro" aria-labelledby="page-title">
+            <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> TKREC / STUDENT SERVICES</p>
+            <h1 id="page-title">Make your next move.</h1>
+            <p class="lead">Find your way to admissions, explore course information, and check the latest results updates.</p>
+            <a class="text-link" th:href="@{/admission}">Get started with admissions <span aria-hidden="true">-&gt;</span></a>
+        </section>
+
+        <section class="service-section" aria-labelledby="services-title">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">YOUR PORTAL</p>
+                    <h2 id="services-title">What are you looking for?</h2>
+                </div>
+                <span class="section-count">01 - 03</span>
+            </div>
+            <div class="service-list">
+                <a class="service-row" th:href="@{/admission}">
+                    <span class="service-index">01</span>
+                    <span class="service-copy"><strong>Admissions</strong><span>Understand the steps before you apply.</span></span>
+                    <span class="service-arrow" aria-hidden="true">-&gt;</span>
+                </a>
+                <a class="service-row" th:href="@{/courses}">
+                    <span class="service-index">02</span>
+                    <span class="service-copy"><strong>Courses</strong><span>Browse programme and course information.</span></span>
+                    <span class="service-arrow" aria-hidden="true">-&gt;</span>
+                </a>
+                <a class="service-row" th:href="@{/results}">
+                    <span class="service-index">03</span>
+                    <span class="service-copy"><strong>Results</strong><span>See the latest academic results updates.</span></span>
+                    <span class="service-arrow" aria-hidden="true">-&gt;</span>
+                </a>
+            </div>
+        </section>
+
+        <footer class="page-footer"><span>TKREC Student Portal</span><span>Information and services</span></footer>
+    </main>
 </body>
 </html>

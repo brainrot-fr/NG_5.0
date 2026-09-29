@@ -1,0 +1,16 @@
+.admission-layout { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(250px, 0.8fr); align-items: start; gap: 22px; padding-top: 28px; animation: enter 520ms 70ms ease both; }
+.journey-panel { padding: 29px 30px 11px; background: var(--white); border: 1px solid var(--line); border-radius: 8px; }
+.panel-heading h2 { margin: 8px 0 0; font-size: 21px; font-weight: 590; }
+.journey-list { margin: 26px 0 0; padding: 0; list-style: none; }
+.journey-list li { display: grid; grid-template-columns: 42px 1fr; gap: 10px; padding: 19px 0; border-top: 1px solid #e8ece7; }
+.step-number { width: 30px; height: 30px; display: grid; place-items: center; background: #eff4e5; color: var(--forest); border-radius: 50%; font-size: 11px; font-variant-numeric: tabular-nums; }
+.journey-list h3 { margin: 2px 0 4px; font-size: 15px; font-weight: 620; }
+.journey-list p { max-width: 42ch; margin: 0; color: var(--muted); font-size: 13px; }
+.journey-list .text-link { margin-top: 9px; font-size: 13px; }
+.note-panel { position: relative; overflow: hidden; padding: 27px 24px 25px; background: #e8f0e9; border: 1px solid #dce8dc; border-radius: 8px; }
+.note-panel::after { position: absolute; right: -36px; bottom: -50px; width: 130px; height: 130px; border: 1px solid rgba(23, 71, 56, 0.12); border-radius: 50%; content: ""; }
+.note-mark { width: 29px; height: 29px; display: grid; place-items: center; margin-bottom: 22px; background: var(--forest); color: var(--lime); border-radius: 50%; font-size: 14px; font-weight: 650; }
+.note-panel h2 { margin: 9px 0; font-size: 21px; font-weight: 590; }
+.note-panel > p:not(.eyebrow) { margin: 0 0 21px; color: #53645a; font-size: 13px; }
+.note-panel .button { position: relative; z-index: 1; }
+@media (max-width: 720px) { .admission-layout { grid-template-columns: 1fr; gap: 14px; padding-top: 20px; } .journey-panel { padding: 23px 20px 8px; } .note-panel { padding: 23px 20px; } }
