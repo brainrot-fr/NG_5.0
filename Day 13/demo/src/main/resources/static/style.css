@@ -1,0 +1,19 @@
+h1 {
+    color: aliceblue;
+    background-color: brown;
+    border: 2px;
+    padding: 20px;
+    border-color: burlywood;
+    border-radius: 10px;
+    max-width: 200px;
+    text-align: center;
+    display: flex;
+    align-self: self;
+}
+.para {
+    color: antiquewhite;
+    background-color: black;
+    font-size: larger;
+    font-family: "SF Pro Display";
+    padding: 10px;
+}
