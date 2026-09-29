@@ -7,6 +7,6 @@ import org.springframework.stereotype.Controller;
 public class Admission {
     @GetMapping("/admission")
     public String admission() {
-        return "index";
+        return "admission";
     }
 }

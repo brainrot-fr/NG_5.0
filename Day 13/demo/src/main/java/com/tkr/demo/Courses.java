@@ -6,8 +6,8 @@ import org.springframework.stereotype.Controller;
 @Controller 
 
 public class Courses {
-@GetMapping("/hello")
-    public String hello() {
-        return "index";
+@GetMapping("/courses")
+    public String courses() {
+        return "courses";
     }
 }
