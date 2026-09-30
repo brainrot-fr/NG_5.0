@@ -20,4 +20,15 @@ public class Home {
     public String home() {
         return "index";
     }
+    @GetMapping("/name")
+    public String getName(Model model) {
+        
+        String friend1 = "Adarsh";
+        String friend2 = "Bharat";
+        String friend3 = "Siddu";
+        String friend4 = "Karthik";
+
+
+        return "index";
+    }
 }
